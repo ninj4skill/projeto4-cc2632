@@ -3,8 +3,8 @@ PROJETO BANCO QUEM POUPA TEM
 Introdução:
   Este projeto visa a simulação de um sistema de banco e foi desenvolvido em linguagem C por três alunos da FEI.
 
-Desenvolvedores:
 
+Desenvolvedores:
   Marcelo Boalento do Nascimento – R.A.: 24.123.078-9
   
   Morgana Rodrigues Zanetti – R.A.: 24.223.010-0
@@ -50,6 +50,7 @@ Como cada opção será executada:
   
   (8) Solicita CPF e senha do cliente, conta de destino (conta para qual o dinheiro será transferido) e valor a ser transferido para efetuar uma transferência entre as contas.
   
+
 
 Onde pode ser compilado:
 
