@@ -4,6 +4,7 @@ Introdução:
   Este projeto visa a simulação de um sistema de banco e foi desenvolvido em linguagem C por três alunos da FEI.
 
 Desenvolvedores:
+
   Marcelo Boalento do Nascimento – R.A.: 24.123.078-9
   
   Morgana Rodrigues Zanetti – R.A.: 24.223.010-0
