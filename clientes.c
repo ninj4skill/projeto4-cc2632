@@ -77,6 +77,43 @@ erro Listar(Clientes cliente[], int *pos){
     return SUCESSO;
 }
 
+erro Debitar(Clientes cliente[], int *pos){
+  long cpfdebitar;
+  char senhadebitar;
+  long valordebitar;
+  int encontrado = 0;
+  printf("Digite o CPF do Cliente: ");
+  scanf("%ld", &cpfdebitar);
+  for (int i = 0; i < *pos; i++){
+    if (cpfdebitar == cliente[i].cpf){
+      printf("Digite a Senha do cliente: ");
+      scanf("%s", &senhadebitar);
+      if (strcmp(&senhadebitar, cliente[i].senha_usuario) == 0){
+        printf("Digite o valor que deseja ser debitado: ");
+        scanf("%ld", &valordebitar);
+        if (strcmp(cliente[i].conta, "plus") == 0){
+          int valortarifa = valordebitar * 0.03;
+          cliente[i].valor_inicial -= valordebitar + valortarifa;
+          FILE *f = fopen("transações.txt", "a");
+          fprintf(f, "Cliente: %s\tOperação: Debito\tCPF: %ld\tTipo de conta: %s\tValor: -%ld\tTarifa: %d\n", cliente[i].nome, cliente[i].cpf, cliente[i].conta, valordebitar, valortarifa );
+          fclose(f);
+          Salvar_clientes(cliente, pos);
+      }
+        else{
+          int valortarifa = valordebitar * 0.05;
+          cliente[i].valor_inicial -= valordebitar + valortarifa;
+          FILE *f = fopen("transações.txt", "a");
+          fprintf(f,"Cliente: %s\tOperação: Debito\tCPF: %ld\tTipo de conta: %s\tValor: -%ld\tTarifa: %d\n", cliente[i].nome, cliente[i].cpf, cliente[i].conta, valordebitar, valortarifa);
+          fclose(f);
+          Salvar_clientes(cliente, pos);
+        }
+        encontrado = 1;;
+      }
+    }
+   }
+  return SUCESSO;
+}
+
 
 erro Salvar_clientes(Clientes cliente[], int *pos){
   FILE *f = fopen("clientes.bin", "wb");
