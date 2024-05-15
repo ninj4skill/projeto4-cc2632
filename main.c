@@ -3,7 +3,7 @@
 
 
 int main() {
-  funcao funcionalidades[] = {Adicionar,Deletar, Listar, Salvar_clientes, Carregar_clientes,Debitar/*, Depositar , Extrato , Transferencia*/};
+  funcao funcionalidades[] = {Adicionar,Deletar, Listar,Debitar, Depositar, Salvar_clientes, Carregar_clientes/* , Extrato , Transferencia*/};
   int pos = 0;
   Clientes cliente[total];
   Carregar_clientes(cliente, &pos);

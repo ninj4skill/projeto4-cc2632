@@ -114,6 +114,26 @@ erro Debitar(Clientes cliente[], int *pos){
   return SUCESSO;
 }
 
+erro Depositar(Clientes cliente[], int *pos){
+  long cpfdepositar;
+  long valordeposito;
+  int encontrado = 0;
+  printf("Digite o cpf do Cliente: ");
+  scanf("%ld", &cpfdepositar);
+  for (int i = 0; i < *pos; i++){
+    if (cpfdepositar == cliente[i].cpf){
+      printf("Digite o valor que deseja depositar: ");
+      scanf("%ld", &valordeposito);
+      cliente[i].valor_inicial += valordeposito;
+      FILE *f = fopen("transações.txt", "a");
+      fprintf(f,"Cliente: %s\tOperação: Deposito\tCPF: %ld\tTipo de conta: %s\tValor: +%ld\tTarifa: 0\n", cliente[i].nome, cliente[i].cpf, cliente[i].conta, valordeposito);
+      fclose(f);
+      encontrado = 1;
+      Salvar_clientes(cliente, pos);
+    }
+  }
+  return SUCESSO;
+}
 
 erro Salvar_clientes(Clientes cliente[], int *pos){
   FILE *f = fopen("clientes.bin", "wb");
