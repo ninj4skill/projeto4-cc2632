@@ -3,7 +3,7 @@
 
 
 int main() {
-  funcao funcionalidades[] = {Adicionar,Deletar, Listar,Debitar, Depositar, Salvar_clientes, Carregar_clientes/* , Extrato , Transferencia*/};
+  funcao Operacoes[] = {Adicionar,Deletar, Listar, Debitar, Depositar, Extrato , Salvar_clientes, Carregar_clientes/*, Transferencia*/};
   int pos = 0;
   Clientes cliente[total];
   Carregar_clientes(cliente, &pos);
@@ -25,7 +25,7 @@ int main() {
       printf("Opção inválida\n");
     }
     else if (opcao > 0){
-      funcionalidades[opcao - 1](cliente, &pos);
+      Operacoes[opcao - 1](cliente, &pos);
     }
     else {
       printf("Saindo...\n");

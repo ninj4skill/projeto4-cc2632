@@ -135,6 +135,46 @@ erro Depositar(Clientes cliente[], int *pos){
   return SUCESSO;
 }
 
+erro Extrato(Clientes cliente[], int *pos){
+  long cpfextrato;
+  char senhaextrato[50];
+  int encontradocpf = 0;
+  int encontradosenha = 0;
+  printf("Digite o CPF do Cliente: ");
+  scanf("%ld", &cpfextrato);
+  for(int i =0; i < *pos; i++){
+    if (cpfextrato == cliente[i].cpf){
+      encontradocpf = 1;
+      printf("Digite a senha do cliente: ");
+      clearBuffer();
+      fgets(senhaextrato, sizeof(senhaextrato), stdin);
+      senhaextrato[strcspn(senhaextrato, "\n")] = '\0';
+      if (strcmp(senhaextrato, cliente[i].senha_usuario) == 0){
+        encontradosenha = 1;
+        FILE *f = fopen("extrato.txt", "w");
+        FILE *f2 = fopen("transações.txt","r");
+        char linha[100];
+        while (fgets(linha, sizeof(linha), f2)){
+          long cpf;
+          char operacao[50];
+          char tipo_conta[50];
+          long valor;
+          int tarifa;
+          if (sscanf(linha, "Cliente: %*s Operação: %s CPF: %ld Tipo de conta: %s Valor: %ld Tarifa: %d", operacao, &cpf, tipo_conta, &valor, &tarifa)==5){
+            if (cpf == cpfextrato){
+              fprintf(f, "Operação: %s\tCPF: %ld\tTipo de conta: %s\tValor: %ld\tTarifa: %d\n", operacao, cpf, tipo_conta, valor, tarifa);
+            } 
+          }
+        }
+        fclose(f);
+        fclose(f2);
+      }
+    }
+  }
+
+  return SUCESSO;
+}
+
 erro Salvar_clientes(Clientes cliente[], int *pos){
   FILE *f = fopen("clientes.bin", "wb");
   if (f == NULL){
