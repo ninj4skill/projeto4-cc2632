@@ -3,10 +3,10 @@
 
 
 int main() {
-  funcao Operacoes[] = {Adicionar,Deletar, Listar, Debitar, Depositar, Extrato , Salvar_clientes, Carregar_clientes/*, Transferencia*/};
+  funcao Operacoes[] = {Adicionar, Deletar, Listar, Debitar, Depositar, Extrato, Transferencia , Salvar_clientes, Carregar_clientes};
   int pos = 0;
   Clientes cliente[total];
-  Carregar_clientes(cliente, &pos);
+  Operacoes[8](cliente, &pos);
   int opcao;
 
   do{
@@ -29,7 +29,7 @@ int main() {
     }
     else {
       printf("Saindo...\n");
-      Salvar_clientes(cliente, &pos);
+      Operacoes[7](cliente, &pos);
     }
   } while(opcao != 0);
 

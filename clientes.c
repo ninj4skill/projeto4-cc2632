@@ -175,6 +175,40 @@ erro Extrato(Clientes cliente[], int *pos){
   return SUCESSO;
 }
 
+erro Transferencia(Clientes cliente[], int *pos){
+  long cpforigem;
+  char senhaorigem;
+  long cpfdestino;
+  long valortransferencia;
+  printf("Digite o cpf de origem: ");
+  scanf("%ld", &cpforigem);
+  for(int i = 0; i < *pos; i++){
+    if (cpforigem == cliente[i].cpf){
+      printf("Digite a senha do cliente de origem: ");
+      scanf("%s", &senhaorigem);
+      if (strcmp(&senhaorigem, cliente[i].senha_usuario) == 0){
+        printf("Digite o cpf de destino: ");
+        scanf("%ld", &cpfdestino);
+        for (int j = 0; j < *pos; j++){
+          if (cpfdestino == cliente[j].cpf){
+            printf("Digite o valor que deseja transferir: ");
+            scanf("%ld", &valortransferencia);
+            cliente[i].valor_inicial -= valortransferencia;
+            cliente[j].valor_inicial += valortransferencia;
+            FILE *f = fopen("transações.txt", "a");
+            fprintf(f,"Cliente: %s\tOperação: Tranferência\tCPF: %ld\tTipo de conta: %s\tValor: -%ld\tTarifa: 0\n", cliente[i].nome, cliente[i].cpf, cliente[i].conta, valortransferencia);
+            fprintf(f, "Cliente: %s\tOperação: Transferência\tCPF: %ld\tTipo de conta: %s\tValor: +%ld\tTarifa: 0\n", cliente[j].nome, cliente[j].cpf, cliente[j].conta, valortransferencia);
+            fclose(f);
+            Salvar_clientes(cliente, pos);
+          }
+        }
+      }
+    }
+  }
+
+  return SUCESSO;
+}
+
 erro Salvar_clientes(Clientes cliente[], int *pos){
   FILE *f = fopen("clientes.bin", "wb");
   if (f == NULL){
