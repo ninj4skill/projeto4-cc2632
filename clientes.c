@@ -98,10 +98,10 @@ erro Debitar(Clientes cliente[], int *pos){
       printf("Digite a Senha do cliente: ");
       scanf("%s", &senhadebitar);
       if (strcmp(&senhadebitar, cliente[i].senha_usuario) == 0){
+        encontradosenha = 1;
         printf("Digite o valor que deseja ser debitado: ");
         scanf("%ld", &valordebitar);
         if (strcmp(cliente[i].conta, "plus") == 0){
-          encontradosenha = 1;
           int valortarifa = valordebitar * 0.03;
           cliente[i].valor_inicial -= valordebitar + valortarifa;
           FILE *f = fopen("transações.txt", "a");
