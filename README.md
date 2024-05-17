@@ -61,6 +61,16 @@ Como cada opção será executada:
 Onde pode ser compilado:
 
   Este código pode ser compilado em qualquer compilador de linguagem C.
+  Um exemplo de por onde o código pode ser compilado é no codespace.
+  Para compilar e executar o cógigo no codespace é preciso:
+
+  1 - Clonar o projeto para o seu computador usando git clone + URL do repositorio
+
+  2 - Navegar para o dietório usando cd + nome do repositorio
+
+  3 - Compilar o programa usando o compilador gcc
+
+  4 - Apos compilador executar o programa usando ./a.out
 
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
