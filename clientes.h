@@ -7,7 +7,7 @@ typedef struct{
   long valor_inicial;
   char senha_usuario[50];
 } Clientes;
-typedef enum{SUCESSO, MAXCLIENTES, SEMCLIENTES, TIPOINVALIDO, NAOENCONTRADO, ABRIR, FECHAR, ESCREVER, LER}erro;
+typedef enum{SUCESSO, MAXCLIENTES, SEMCLIENTES, CPFEXISTENTE, TIPOINVALIDO, NAOENCONTRADO, ABRIR, FECHAR, ESCREVER, LER}erro;
 typedef erro (*funcao)(Clientes[], int*);
 
 erro Adicionar(Clientes cliente[], int *pos);
